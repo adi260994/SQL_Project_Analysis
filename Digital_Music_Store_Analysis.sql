@@ -49,8 +49,6 @@ LIMIT 1;
 /* Q6: Write query to return the email, first name, last name, & Genre of all Rock Music listeners. 
 Return your list ordered alphabetically by email starting with A. */
 
-/*Method 1 */
-
 SELECT DISTINCT email,first_name, last_name
 FROM customer
 JOIN invoice ON customer.customer_id = invoice.customer_id
@@ -91,12 +89,6 @@ ORDER BY miliseconds DESC;
 
 
 /* Q9: Find how much amount spent by each customer on artists? Write a query to return customer name, artist name and total spent */
-
-/* Steps to Solve: First, find which artist has earned the most according to the InvoiceLines. Now use this artist to find 
-which customer spent the most on this artist. For this query, you will need to use the Invoice, InvoiceLine, Track, Customer, 
-Album, and Artist tables. Note, this one is tricky because the Total spent in the Invoice table might not be on a single product, 
-so you need to use the InvoiceLine table to find out how many of each product was purchased, and then multiply this by the price
-for each artist. */
 
 WITH best_selling_artist AS (
 	SELECT artist.artist_id AS artist_id, artist.name AS artist_name, SUM(invoice_line.unit_price*invoice_line.quantity) AS total_sales
@@ -139,9 +131,7 @@ WITH popular_genre AS
 SELECT * FROM popular_genre WHERE RowNo <= 1
 
 
-
-
-
+	
 /* Q11: Write a query that determines the customer that has spent the most on music for each country. 
 Write a query that returns the country along with the top customer and how much they spent. 
 For countries where the top amount spent is shared, provide all customers who spent this amount. */
